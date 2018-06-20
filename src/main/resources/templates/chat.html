@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>聊天界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="bg-success">
+<div  class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body" >
+                    <div class="panel panel-default">
+                        <div class="panel-body" >
+                            <a href="/main?page=1" class="btn btn-info btn-lg">
+                                <span class="glyphicon glyphicon-home"></span>
+                            </a>与<span th:text="${friend.userName}"></span>的聊天
+                        </div>
+                    </div>
+                    <div  data-spy="scroll" data-target="#navbar-example" data-offset="0"
+                         style="height:300px;overflow:auto; position: relative;" id="chatList" >
+                        <div th:each="chat : ${chatL}">
+
+                        <div th:unless="${chat.direction!=1}">
+                        <div class="panel panel-primary" th:if=${chat.wIdFri==my.id}>
+                            <div class="panel-heading">
+                                <img th:unless="${chat.wIdFri!=my.id}" th:src="${my.photo}" height="50" width="50"/>
+                                <img th:if="${chat.wIdFri!=my.id}" th:src="${friend.photo}" height="50" width="50"/>
+                            </div>
+                            <div class="panel-body">
+                                <span th:text="${chat.discuss}"></span>
+                            </div>
+                        </div>
+                        </div>
+                        <div th:if="${chat.direction!=1}">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <!--<img th:unless="${chat.wIdFri!=my.id}" th:src="${friend.photo}" height="50" width="50"/>-->
+                                <!--<img th:if="${chat.wIdFri!=my.id}" th:src="${my.photo}" height="50" width="50"/>-->
+                            </div>
+                            <div class="panel-body">
+                                <span th:text="${chat.discuss}"></span>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form role="form" action="#"  th:action="@{/chat}"  method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="id" th:value="${friend.id}"/>
+                            <textarea  name="discuss" class="form-control" rows="3" id="text" placeholder="请输入聊天内容"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-default" >发送聊天信息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script src="https://code.jquery.com/jquery.js">
+
+</script>
+<!-- 包括所有已编译的插件 -->
+<script src="./js/bootstrap.js"></script>
+<script th:inline="javascript">
+    function chat() {
+        var txt = document.getElementById("text").value;
+        var chatList = $("#chatList");
+        var childdiv = $('<div class="panel panel-danger">\n' +
+            '                        <div class="panel-heading">\n' +
+            '                            <img src="./none.jpg" height="50" width="50"/>\n' +
+            '                            <h3 class="panel-title">用户2</h3>\n' +
+            '                        </div>\n' +
+            '                        <div class="panel-body">\n' +
+            txt+
+            '                        </div>');        //创建一个子div
+        //childdiv.attr('id','child');            //给子div设置id
+        // childdiv.addclass('childdiv');    //添加css样式
+
+        chatList.append(childdiv);
+    }
+    var scrollHeight = $('#chatList').prop("scrollHeight");
+    $('#chatList').scrollTop(scrollHeight,200);
+    var url =  "/follow"+/*[[${friend.id}]]*/;
+    function refreshPage()
+    {
+        // window.location.reload();
+        // window.setTimeout("refreshPage()",1000);
+    }
+    refreshPage();
+</script>
+</body>
+</html>

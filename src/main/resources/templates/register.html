@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="bg-success">
+<div  class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <span class="glyphicon glyphicon-plus"></span>
+            <h1>填写完成以下数据即可完成注册，加入微博交友系统</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form role="form" action="#"  th:action="@{/register}" th:object="${userEntity}" method="post">
+                        <div class="form-group">
+                            <label>账号</label>
+                            <input type="text" class="form-control" th:field="*{login}"
+                                   placeholder="请输入账号">
+                            <label><span th:text="${ERRLogin}"></span></label>
+                        </div>
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input type="password" class="form-control" th:field="*{passwd}"
+                                   placeholder="请输入密码">
+                            <label><span th:text="${ERRPasswd}"></span></label>
+                        </div>
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input type="text" class="form-control" th:field="*{userName}"
+                                   placeholder="请输入用户名">
+                            <label><span th:text="${ERRUserName}"></span></label>
+                        </div>
+                        <div class="form-group">
+                            <label>性别</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="sex" th:field="*{sex}" value="男" />男
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="sex" th:field="*{sex}" value="女"/>女
+                            </label>
+                            <label><span th:text="${ERRSex}"></span></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">简介</label>
+                            <textarea class="form-control" rows="3" th:field="*{resume}"></textarea>
+                            <label><span th:text="${ERRResume}"></span></label>
+                        </div>
+                        <div class="form-group">
+                            <label>重置密码问题</label>
+                            <input type="text" class="form-control" th:field="*{question}"
+                                   placeholder="请输入重置密码问题" />
+
+                        </div>
+                        <div class="form-group">
+                            <label>答案</label>
+                            <input type="text" class="form-control" th:field="*{answer}"
+                                   placeholder="请输入答案" />
+
+                        </div>
+                        <button type="submit" class="btn btn-default">注册</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- 包括所有已编译的插件 -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
