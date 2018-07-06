@@ -3,5 +3,5 @@
 使用框架是spring boot, mybatis连接mysql和对象。<br> 
 前端是bootstrap。<br> 
 构建工具是maven。<br> 
-#部分截图<br> 
+#Preview<br> 
 -------------------------------------
