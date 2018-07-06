@@ -5,3 +5,4 @@
 构建工具是maven。<br> 
 #Preview<br> 
 -------------------------------------
+![]https://github.com/edonon/mywb/blob/master/Preview/main0706.jpg
