@@ -1,3 +1,4 @@
+#新的更新网址https://github.com/edonon/uwb<br>
 #个人写的交友平台。<br> 
 -------------------------------------
     使用框架是spring boot, mybatis连接mysql和对象。
