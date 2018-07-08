@@ -65,9 +65,10 @@ public class UserController {
         Date now=new java.sql.Date(System.currentTimeMillis());
         int id = (int)request.getSession().getAttribute("id");
         UserEntity userEntity  = userMapper.getOne(id);
-        if(userEntity.getFree() != null && userEntity.getFree().before(now)){
-            return "freetime";
-        }
+        //发言检测
+//        if(userEntity.getFree() != null && userEntity.getFree().before(now)){
+//            return "freetime";
+//        }
         WeiboEntity weiboEntity = new WeiboEntity(id, content,now, now, 0, "");
        if (!file.isEmpty()) {
            try {
@@ -300,8 +301,10 @@ public class UserController {
     }
     private int min(int i, int j){if(i<j)return i; return j;}
     private int max(int i, int j){if(i>j)return i; return j;}
-    private static String IMG_FOLDER = "E:\\java_code\\uwb\\src\\main\\resources\\static\\WBresources\\img\\";
-    private static String PHOTO_FOLDER = "E:\\java_code\\uwb\\src\\main\\resources\\static\\WBresources\\photo\\";
+    //private static String IMG_FOLDER = "E:\\java_code\\uwb\\src\\main\\resources\\static\\WBresources\\img\\";
+    //private static String PHOTO_FOLDER = "E:\\java_code\\uwb\\src\\main\\resources\\static\\WBresources\\photo\\";
+    private static String IMG_FOLDER = "E:\\java_code\\uwb\\target\\classes\\static\\WBresources\\img\\";
+    private static String PHOTO_FOLDER = "E:\\java_code\\uwb\\target\\classes\\static\\WBresources\\photo\\";
     private static String IMG_FOLDER_TOSAVE = "./WBresources/img/";
     private static String PHOTO_FOLDER_TOSAVE = "./WBresources/photo/";
     private static int USER_PAGE = 2;
